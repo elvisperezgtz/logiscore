@@ -3,7 +3,10 @@ Given(/^Que el usuario se encuentra en el modulo de inicio de sesion$/, () => {
     cy.visit('https://logiscore-it-pre.logisfashion.com/')
 });
 
- 
+And  (/^Se redirecciona como usuario corporatrivo$/, () => {
+    cy.get("//a[contains(text(),'Acceso usuario corporativo')]").click() 
+});
+
 When(/^el inicia sesion con credenciales erroneas$/, () => {
     cy.llenarFormularioLogin('testadmin@logispre.onmicrosoft.com','Dala7969.')
     cy.get('.btn').click()

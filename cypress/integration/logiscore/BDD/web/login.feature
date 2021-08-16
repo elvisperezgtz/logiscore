@@ -9,6 +9,7 @@ Feature: Inicio de sesion
         Given Que el usuario se encuentra en el modulo de inicio de sesion
 
     Scenario: Inicio de sesion exitoso
+        And  Se redirecciona como usuario corporatrivo
         When el inicia sesion con sus credenciales
         Then entonces el deberia poder ver el saludo de bienvenida
 
