@@ -8,9 +8,9 @@ Feature: Inicio de sesion
     Background: Abrir el sitio web
         Given Que el usuario se encuentra en el modulo de inicio de sesion
 
-    #   Scenario: Inicio de sesion exitoso
-    #       When el inicia sesion con sus credenciales
-    #      Then entonces el deberia poder ver el saludo de bienvenida
+    Scenario: Inicio de sesion exitoso
+        When el inicia sesion con sus credenciales
+        Then entonces el deberia poder ver el saludo de bienvenida
 
 
     Scenario: Inicio de sesion fallido
