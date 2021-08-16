@@ -14,3 +14,10 @@ Then(/^el deberia poder el mensaje "([^"]*)"$/, (mensaje,) => {
     cy.get('.btn').click()
     cy.get('#Login-error > span').should('have.text', 'Usuario o contraseña incorrectos.')
 });
+When(/^el inicia sesion con sus credenciales$/, () => {
+    cy.llenarFormularioLogin('testadmin@logispre.onmicrosoft.com','Dala7969.')
+    cy.get('.btn').click()
+});
+ 
+Then(/^entonces el deberia poder ver el saludo de bienvenida$/, () => {
+});
