@@ -1,34 +1,56 @@
+/// <reference types="Cypress" />
+
+let requestResponse = null;
+let token = null;
+
 Given(/^que el servicio esta en linea$/, () => {
   Cypress.config(
     "baseUrl",
-    "https://logiscore-services-it-pre.logisfashion.com"
+    "https://logiscore-services-${Cypress.env('enviroments.env')}.logisfashion.com"
   );
+  
 });
 
 When(/^se ejecuta el endpoint token$/, () => {
-  
-  cy.request({
-      method: 'POST',
-      url: 'logiscore-services-it-pre.logisfashion.com',
-     headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-
-     },
-     body: {
-        grant_type: "password",
-        client_id: "loadtest",
-        client_secret: "secret",
-        scope: "openid core",
-        username: "1000025",
-        password: "password",
-      },
-  })
-  .then((response) => {
-    expect(response).property("status").to.equal(200);
+  cy.get_token().then((response) => {
+    const requestResponse = response.body.access_token;
+    expect(response.status).to.eq(200);
+    //actualizar el token
+    cy.readFile("cypress/fixtures/testdata.json", (err, data) => {
+      if (err) {
+        return console.error(err);
+      }
+    }).then((data) => {
+      cy.log(data);
+      data.access_token = response.body.access_token; 
+      cy.writeFile(
+        "cypress/fixtures/testdata.json",
+        JSON.stringify(data)
+      ); //Write it to the fixtures file
+    });
+    
   });
 });
 
-Then(
-  /^deberia poder ver el status '200' en la respuesta del servicio$/,
-  () => {}
-);
+Then(/^deberia poder ver el status '200' en la respuesta del servicio$/, () => {
+
+//API import inbound
+  cy.fixture('testjp.json').then((datos)=>{
+    cy.import_inbound(datos.poNumber).then((response) =>{
+      expect(response.status).to.eq(204);
+    })
+  })
+ //API import inbound id
+  cy.fixture('testdata.json').then((token) =>{
+    cy.fixture('testjp.json').then((datos)=>{
+      cy.log("token "+ token.access_token)
+      cy.import_inbound_id(datos.poNumber,token.access_token)
+      .then((response)=>{
+        expect(response.status).to.eq(200)
+      }) 
+    })
+  })
+
+ 
+
+});

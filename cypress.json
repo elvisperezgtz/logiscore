@@ -1,3 +1,20 @@
 {
-    "testFiles": "**/*.feature"
+    "testFiles": "**/*.feature",
+    "defaultCommandTimeout": 4000,
+    "pageLoadTimeout":15000,
+    "env":{
+        "env":"it-pre",
+        "username":"1000025",
+        "password":"password",
+        "operator": "1000030",
+        "warehouse":"CAB",
+        "client_code":"XA000042",
+        "apikey":"XA000042abc",
+        "dock_code":"008",
+        "bin_location": "CAB0000100654",
+        "sku": "300020212",
+        "access_token":"null"
+    }
+    
 }
+

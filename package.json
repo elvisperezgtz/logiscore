@@ -23,6 +23,9 @@
     "cypress": "^8.2.0"
   },
   "devDependencies": {
-    "cypress-cucumber-preprocessor": "^4.2.0"
+    "cypress-cucumber-preprocessor": "^4.2.0",
+    "mocha": "^9.0.3",
+    "mocha-junit-reporter": "^2.0.0",
+    "mocha-teamcity-reporter": "^4.1.0"
   }
 }
