@@ -2,6 +2,7 @@
     "testFiles": "**/*.feature",
     "defaultCommandTimeout": 4000,
     "pageLoadTimeout":15000,
+    "screenshotOnFailure": true,
     "env":{
         "env":"it-pre",
         "username":"1000025",
@@ -14,6 +15,19 @@
         "bin_location": "CAB0000100654",
         "sku": "300020212",
         "access_token":"null"
+    },
+    "reporter": "cypress-mochawesome-reporter",
+    "reporterOptions":{
+
+        "overwrite": false,
+        "html": false,
+        "files": "cypress/report",
+        "charts": true,
+        "reportPageTitle" : "Reporte de ejecucion",
+        "embeddedScreenshots": true,
+        "json": true,
+        "chromeWebSecurity": false
+
     }
     
 }

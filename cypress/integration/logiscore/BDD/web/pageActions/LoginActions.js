@@ -7,7 +7,7 @@ class LoginActions {
     loginPage.getUsernameField().type(username);
     loginPage.getNextButton().click();
     loginPage.getPasswordField().type(password);
-    oginPage.getNextButton().click();
+    loginPage.getNextButton().click();
   }
 }
 

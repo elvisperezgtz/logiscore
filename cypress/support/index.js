@@ -15,6 +15,7 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
+import 'cypress-mochawesome-reporter/register';
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
@@ -25,7 +26,9 @@ module.exports = (on, config) => {
 
   
     // modify env var value
-    config.env.access_token = 'ToolsQA'
+
+    require('cypress-mochawesome-reporter/plugin')(on);
+
   
     // return config
     return config
